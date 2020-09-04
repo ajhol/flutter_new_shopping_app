@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-// test comment
 class Register extends StatefulWidget {
   @override
   _RegisterState createState() => _RegisterState();
