@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1074837030592",
+    "firebase_url": "https://masterung-master3.firebaseio.com",
+    "project_id": "masterung-master3",
+    "storage_bucket": "masterung-master3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1074837030592:android:5d0107183c0ddd9615cf25",
+        "android_client_info": {
+          "package_name": "com.example.ex1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1074837030592-4bjkgvbpmg55rh7nm7bjcscl8ila8jqq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-8dVoraghIBaHPwGOHiULsR92rVxd3C0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1074837030592-4bjkgvbpmg55rh7nm7bjcscl8ila8jqq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
