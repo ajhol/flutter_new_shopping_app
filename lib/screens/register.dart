@@ -27,6 +27,7 @@ class _RegisterState extends State<Register> {
     );
   }
 
+//
   Future<void> registerThread() async {
     FirebaseAuth firebaseAuth = FirebaseAuth.instance;
     await firebaseAuth
