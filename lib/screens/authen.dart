@@ -7,7 +7,8 @@ class Authen extends StatefulWidget {
 
 class _AuthenState extends State<Authen> {
   //Explicit
-
+  final formKey = GlobalKey<FormState>();
+  String emailString, passwordString;
   //Method
 
   Widget backButton() {
@@ -24,13 +25,16 @@ class _AuthenState extends State<Authen> {
 
   Widget content() {
     return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          showAppName(),
-          emailText(),
-          passwordText(),
-        ],
+      child: Form(
+        key: formKey,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            showAppName(),
+            emailText(),
+            passwordText(),
+          ],
+        ),
       ),
     );
   }
@@ -80,6 +84,9 @@ class _AuthenState extends State<Authen> {
           labelText: 'Email:',
           labelStyle: TextStyle(color: Colors.blue.shade700),
         ),
+        onSaved: (String value) {
+          emailString = value.trim();
+        },
       ),
     );
   }
@@ -98,6 +105,9 @@ class _AuthenState extends State<Authen> {
           labelText: 'Password:',
           labelStyle: TextStyle(color: Colors.blue.shade700),
         ),
+        onSaved: (String value) {
+          passwordString = value.trim();
+        },
       ),
     );
   }
@@ -124,7 +134,10 @@ class _AuthenState extends State<Authen> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.blue.shade700,
         child: Icon(Icons.navigate_next, size: 36),
-        onPressed: () {},
+        onPressed: () {
+          formKey.currentState.save();
+          print('email = $emailString,password =$passwordString');
+        },
       ),
     );
   }
