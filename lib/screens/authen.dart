@@ -105,11 +105,19 @@ class _AuthenState extends State<Authen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Stack(
-          children: [
-            backButton(),
-            content(),
-          ],
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: RadialGradient(
+              colors: [Colors.white, Colors.yellow.shade600],
+              radius: .5,
+            ),
+          ),
+          child: Stack(
+            children: [
+              backButton(),
+              content(),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
