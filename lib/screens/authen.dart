@@ -15,6 +15,7 @@ class _AuthenState extends State<Authen> {
         icon: Icon(
           Icons.navigate_before,
           size: 40,
+          color: Colors.blue.shade700,
         ),
         onPressed: () {
           Navigator.of(context).pop();
