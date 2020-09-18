@@ -12,8 +12,21 @@ class _MyServiceState extends State<MyService> {
 
   // Method
 
+  Widget showLogo() {
+    return Container(
+      width: 80,
+      height: 80,
+      child: Image.asset('images/logo.png'),
+    );
+  }
+
   Widget showHead() {
-    return DrawerHeader(child: null);
+    return DrawerHeader(
+        child: Column(
+      children: [
+        showLogo(),
+      ],
+    ));
   }
 
   Widget showDrawer() {
