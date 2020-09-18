@@ -9,8 +9,37 @@ class MyService extends StatefulWidget {
 
 class _MyServiceState extends State<MyService> {
   //Explicit
-
+  String login = '...';
   // Method
+  @override
+  void initState() {
+    super.initState();
+    findDisplyaName();
+  }
+
+  Future<void> findDisplyaName() async {
+    FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+    FirebaseUser firebaseUser = await firebaseAuth.currentUser();
+    setState(() {
+      login = firebaseUser.displayName;
+    });
+    print('login = $login');
+  }
+
+  Widget showLogin() {
+    return Text('Login by $login');
+  }
+
+  Widget showAppName() {
+    return Text(
+      'Loh Shopping Mall',
+      style: TextStyle(
+          color: Colors.blue.shade700,
+          fontFamily: 'Mansalva',
+          fontWeight: FontWeight.bold,
+          fontSize: 18),
+    );
+  }
 
   Widget showLogo() {
     return Container(
@@ -25,6 +54,9 @@ class _MyServiceState extends State<MyService> {
         child: Column(
       children: [
         showLogo(),
+        showAppName(),
+        SizedBox(height: 6),
+        showLogin(),
       ],
     ));
   }
