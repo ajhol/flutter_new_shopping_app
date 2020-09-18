@@ -12,6 +12,18 @@ class _MyServiceState extends State<MyService> {
 
   // Method
 
+  Widget showHead() {
+    return DrawerHeader(child: null);
+  }
+
+  Widget showDrawer() {
+    return Drawer(
+      child: ListView(
+        children: [showHead()],
+      ),
+    );
+  }
+
   Widget signOutButton() {
     return IconButton(
       icon: Icon(Icons.exit_to_app),
@@ -70,6 +82,7 @@ class _MyServiceState extends State<MyService> {
         actions: [signOutButton()],
       ),
       body: Text('Body'),
+      drawer: showDrawer(),
     );
   }
 }
