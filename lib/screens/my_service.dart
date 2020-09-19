@@ -17,6 +17,36 @@ class _MyServiceState extends State<MyService> {
     findDisplyaName();
   }
 
+  Widget showListProduct() {
+    return ListTile(
+      leading: Icon(
+        Icons.list,
+        size: 36,
+        color: Colors.purple,
+      ),
+      title: Text('List Product'),
+      subtitle: Text('Show All List Product'),
+      onTap: () {
+        Navigator.of(context).pop();
+      },
+    );
+  }
+
+  Widget showAddList() {
+    return ListTile(
+      leading: Icon(
+        Icons.playlist_add,
+        size: 36,
+        color: Colors.green,
+      ),
+      title: Text('Add List Product'),
+      subtitle: Text('Add new Product to Database'),
+      onTap: () {
+        Navigator.of(context).pop();
+      },
+    );
+  }
+
   Future<void> findDisplyaName() async {
     FirebaseAuth firebaseAuth = FirebaseAuth.instance;
     FirebaseUser firebaseUser = await firebaseAuth.currentUser();
@@ -74,7 +104,11 @@ class _MyServiceState extends State<MyService> {
   Widget showDrawer() {
     return Drawer(
       child: ListView(
-        children: [showHead()],
+        children: [
+          showHead(),
+          showListProduct(),
+          showAddList(),
+        ],
       ),
     );
   }
