@@ -27,14 +27,19 @@ class _MyServiceState extends State<MyService> {
   }
 
   Widget showLogin() {
-    return Text('Login by $login');
+    return Text(
+      'login by $login',
+      style: TextStyle(
+        color: Colors.white,
+      ),
+    );
   }
 
   Widget showAppName() {
     return Text(
       'Loh Shopping Mall',
       style: TextStyle(
-          color: Colors.blue.shade700,
+          color: Colors.white,
           fontFamily: 'Mansalva',
           fontWeight: FontWeight.bold,
           fontSize: 18),
@@ -51,14 +56,19 @@ class _MyServiceState extends State<MyService> {
 
   Widget showHead() {
     return DrawerHeader(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+          image: AssetImage('images/shop.jpg'),
+          fit: BoxFit.cover,
+        )),
         child: Column(
-      children: [
-        showLogo(),
-        showAppName(),
-        SizedBox(height: 6),
-        showLogin(),
-      ],
-    ));
+          children: [
+            showLogo(),
+            showAppName(),
+            SizedBox(height: 6),
+            showLogin(),
+          ],
+        ));
   }
 
   Widget showDrawer() {
@@ -126,7 +136,7 @@ class _MyServiceState extends State<MyService> {
         title: Text('My Service'),
         actions: [signOutButton()],
       ),
-      body: Text('Body'),
+      body: Text('Body for all'),
       drawer: showDrawer(),
     );
   }
