@@ -1,6 +1,8 @@
+import 'package:ex1/widget/add_list_product.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ex1/screens/home.dart';
+import 'package:ex1/widget/show_list_product.dart';
 
 class MyService extends StatefulWidget {
   @override
@@ -10,6 +12,7 @@ class MyService extends StatefulWidget {
 class _MyServiceState extends State<MyService> {
   //Explicit
   String login = '...';
+  Widget currentWidget = ShowListProduct();
   // Method
   @override
   void initState() {
@@ -27,6 +30,9 @@ class _MyServiceState extends State<MyService> {
       title: Text('List Product'),
       subtitle: Text('Show All List Product'),
       onTap: () {
+        setState(() {
+          currentWidget = ShowListProduct();
+        });
         Navigator.of(context).pop();
       },
     );
@@ -42,6 +48,9 @@ class _MyServiceState extends State<MyService> {
       title: Text('Add List Product'),
       subtitle: Text('Add new Product to Database'),
       onTap: () {
+        setState(() {
+          currentWidget = AddListProduct();
+        });
         Navigator.of(context).pop();
       },
     );
@@ -170,7 +179,7 @@ class _MyServiceState extends State<MyService> {
         title: Text('My Service'),
         actions: [signOutButton()],
       ),
-      body: Text('Body for all'),
+      body: currentWidget,
       drawer: showDrawer(),
     );
   }
