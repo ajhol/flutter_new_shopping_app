@@ -1,5 +1,7 @@
 import 'dart:io';
+import 'dart:math';
 
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -13,7 +15,7 @@ class AddListProduct extends StatefulWidget {
 class _AddListProductState extends State<AddListProduct> {
   //Field
   File file;
-  String name, detail;
+  String name, detail, urlPicture;
 
   //Method
 
@@ -37,7 +39,7 @@ class _AddListProductState extends State<AddListProduct> {
                 showAlert('Have Space', 'Please Fill Every Blank');
               } else {
                 // Upload Value To Firebase
-
+                uploadPictureToStorage();
               }
             },
             icon: Icon(
@@ -52,6 +54,18 @@ class _AddListProductState extends State<AddListProduct> {
         ),
       ],
     );
+  }
+
+  Future<void> uploadPictureToStorage() async {
+    Random random = Random();
+    int i = random.nextInt(100000);
+    FirebaseStorage firebaseStorage = FirebaseStorage.instance;
+    StorageReference storageReference =
+        firebaseStorage.ref().child('Product/product$i.jpg');
+    StorageUploadTask storageUploadTask = storageReference.putFile(file);
+    urlPicture =
+        await (await storageUploadTask.onComplete).ref.getDownloadURL();
+    print('urlPicture = $urlPicture');
   }
 
   Future<void> showAlert(String title, String message) async {
