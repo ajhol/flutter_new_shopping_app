@@ -8,10 +8,21 @@ class ShowListProduct extends StatefulWidget {
 }
 
 class _ShowListProductState extends State<ShowListProduct> {
+  //Field
+
+  //Method
+  @override
+  void initState() {
+    super.initState();
+    readAllData();
+  }
+
+  Future<void> readAllData() async {}
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text('This is ShowListProduct'),
+      child: Text('This is ShowListProduct test'),
     );
   }
 }
