@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AddListProduct extends StatefulWidget {
   AddListProduct({Key key}) : super(key: key);
@@ -9,8 +12,33 @@ class AddListProduct extends StatefulWidget {
 
 class _AddListProductState extends State<AddListProduct> {
   //Field
+  File file;
 
   //Method
+
+  Widget upLoadButton() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        Container(
+          width: MediaQuery.of(context).size.width,
+          child: RaisedButton.icon(
+            color: Colors.deepOrange,
+            onPressed: () {},
+            icon: Icon(
+              Icons.cloud_upload,
+              color: Colors.white,
+            ),
+            label: Text(
+              'Upload Data to Firebase',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   Widget nameForm() {
     return Container(
       width: MediaQuery.of(context).size.width * 0.6,
@@ -42,8 +70,23 @@ class _AddListProductState extends State<AddListProduct> {
         size: 36,
         color: Colors.purple,
       ),
-      onPressed: () {},
+      onPressed: () {
+        chooseImage(ImageSource.camera);
+      },
     );
+  }
+
+  Future<void> chooseImage(ImageSource imageSource) async {
+    try {
+      var object = await ImagePicker.pickImage(
+        source: imageSource,
+        maxWidth: 800,
+        maxHeight: 800,
+      );
+      setState(() {
+        file = object;
+      });
+    } catch (e) {}
   }
 
   Widget galleryButton() {
@@ -53,7 +96,9 @@ class _AddListProductState extends State<AddListProduct> {
         size: 36,
         color: Colors.red,
       ),
-      onPressed: () {},
+      onPressed: () {
+        chooseImage(ImageSource.gallery);
+      },
     );
   }
 
@@ -73,7 +118,7 @@ class _AddListProductState extends State<AddListProduct> {
       // color: Colors.grey,
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.3,
-      child: Image.asset('images/pic.png'),
+      child: file == null ? Image.asset('images/pic.png') : Image.file(file),
     );
   }
 
@@ -97,6 +142,7 @@ class _AddListProductState extends State<AddListProduct> {
       child: Stack(
         children: [
           showContent(),
+          upLoadButton(),
         ],
       ),
     );
