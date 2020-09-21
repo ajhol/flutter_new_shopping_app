@@ -30,6 +30,14 @@ class _AddListProductState extends State<AddListProduct> {
               if (file == null) {
                 showAlert(
                     'Non Choose Picture', 'Please Click Camera or Gallery');
+              } else if (name == null ||
+                  name.isEmpty ||
+                  detail == null ||
+                  detail.isEmpty) {
+                showAlert('Have Space', 'Please Fill Every Blank');
+              } else {
+                // Upload Value To Firebase
+
               }
             },
             icon: Icon(
