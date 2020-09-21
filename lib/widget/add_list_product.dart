@@ -11,6 +11,29 @@ class _AddListProductState extends State<AddListProduct> {
   //Field
 
   //Method
+  Widget nameForm() {
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.6,
+      child: TextField(
+        decoration: InputDecoration(
+            helperText: 'Type Your Name Of Product',
+            icon: Icon(Icons.motorcycle),
+            labelText: 'Name Product'),
+      ),
+    );
+  }
+
+  Widget detailForm() {
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.6,
+      child: TextField(
+        decoration: InputDecoration(
+            helperText: 'Type Your Detail Of Product',
+            icon: Icon(Icons.details),
+            labelText: 'Detail Product'),
+      ),
+    );
+  }
 
   Widget cameraButton() {
     return IconButton(
@@ -55,11 +78,16 @@ class _AddListProductState extends State<AddListProduct> {
   }
 
   Widget showContent() {
-    return Column(
-      children: [
-        showImage(),
-        showButton(),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          showImage(),
+          showButton(),
+          nameForm(),
+          detailForm(),
+        ],
+      ),
     );
   }
 
