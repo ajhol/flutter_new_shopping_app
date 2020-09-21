@@ -13,6 +13,7 @@ class AddListProduct extends StatefulWidget {
 class _AddListProductState extends State<AddListProduct> {
   //Field
   File file;
+  String name, detail;
 
   //Method
 
@@ -43,6 +44,9 @@ class _AddListProductState extends State<AddListProduct> {
     return Container(
       width: MediaQuery.of(context).size.width * 0.6,
       child: TextField(
+        onChanged: (String string) {
+          name = string.trim();
+        },
         decoration: InputDecoration(
             helperText: 'Type Your Name Of Product',
             icon: Icon(Icons.motorcycle),
@@ -55,6 +59,9 @@ class _AddListProductState extends State<AddListProduct> {
     return Container(
       width: MediaQuery.of(context).size.width * 0.6,
       child: TextField(
+        onChanged: (value) {
+          detail = value.trim();
+        },
         decoration: InputDecoration(
             helperText: 'Type Your Detail Of Product',
             icon: Icon(Icons.details),
