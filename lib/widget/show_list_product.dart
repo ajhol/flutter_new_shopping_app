@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ex1/models/product_model..dart';
 import 'package:flutter/material.dart';
 
 class ShowListProduct extends StatefulWidget {
@@ -10,7 +11,7 @@ class ShowListProduct extends StatefulWidget {
 
 class _ShowListProductState extends State<ShowListProduct> {
   //Field
-
+  List<ProductModel> productModels = List();
   //Method
   @override
   void initState() {
@@ -26,6 +27,10 @@ class _ShowListProductState extends State<ShowListProduct> {
       for (var snapshot in snapshots) {
         print('snapshot = $snapshot');
         print('Name= ${snapshot.data['Name']}');
+        ProductModel productModel = ProductModel.fromMap(snapshot.data);
+        setState(() {
+          productModels.add(productModel);
+        });
       }
     });
   }
@@ -33,7 +38,11 @@ class _ShowListProductState extends State<ShowListProduct> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text('This is ShowListProduct test'),
-    );
+        child: ListView.builder(
+      itemCount: productModels.length,
+      itemBuilder: (BuildContext buildContext, int index) {
+        return Text(productModels[index].name);
+      },
+    ));
   }
 }
