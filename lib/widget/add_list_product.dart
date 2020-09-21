@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ex1/screens/my_service.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -66,6 +68,22 @@ class _AddListProductState extends State<AddListProduct> {
     urlPicture =
         await (await storageUploadTask.onComplete).ref.getDownloadURL();
     print('urlPicture = $urlPicture');
+    insertValueToFireStore();
+  }
+
+  Future<void> insertValueToFireStore() async {
+    Firestore firestore = Firestore.instance;
+    Map<String, dynamic> map = Map();
+    map['Name'] = name;
+    map['Detail'] = detail;
+    map['PathImage'] = urlPicture;
+    await firestore.collection('Product').document().setData(map).then((value) {
+      print('Insert Success');
+      MaterialPageRoute route = MaterialPageRoute(
+        builder: (value) => MyService(),
+      );
+      Navigator.of(context).pushAndRemoveUntil(route, (value) => false);
+    });
   }
 
   Future<void> showAlert(String title, String message) async {
