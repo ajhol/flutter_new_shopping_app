@@ -25,7 +25,13 @@ class _AddListProductState extends State<AddListProduct> {
           width: MediaQuery.of(context).size.width,
           child: RaisedButton.icon(
             color: Colors.deepOrange,
-            onPressed: () {},
+            onPressed: () {
+              print('You click upload');
+              if (file == null) {
+                showAlert(
+                    'Non Choose Picture', 'Please Click Camera or Gallery');
+              }
+            },
             icon: Icon(
               Icons.cloud_upload,
               color: Colors.white,
@@ -38,6 +44,25 @@ class _AddListProductState extends State<AddListProduct> {
         ),
       ],
     );
+  }
+
+  Future<void> showAlert(String title, String message) async {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(title),
+            content: Text(message),
+            actions: [
+              FlatButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('OK'),
+              ),
+            ],
+          );
+        });
   }
 
   Widget nameForm() {
