@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ex1/models/product_model..dart';
 import 'package:flutter/material.dart';
@@ -53,7 +55,19 @@ class _ShowListProductState extends State<ShowListProduct> {
   }
 
   Widget showName(int index) {
-    return Text(productModels[index].name);
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        Text(
+          productModels[index].name,
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: Colors.blue,
+          ),
+        ),
+      ],
+    );
   }
 
   Widget showDetail(int index) {
@@ -62,14 +76,23 @@ class _ShowListProductState extends State<ShowListProduct> {
       string = string.substring(0, 99);
       string = '$string...';
     }
-    return Text(string);
+    return Text(
+      string,
+      style: TextStyle(
+        fontSize: 14,
+        fontStyle: FontStyle.italic,
+        color: Colors.green,
+      ),
+    );
   }
 
   Widget showText(int index) {
     return Container(
+      padding: EdgeInsets.only(right: 20),
       width: MediaQuery.of(context).size.width * 0.5,
       height: MediaQuery.of(context).size.width * 0.5,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [showName(index), showDetail(index)],
       ),
     );
