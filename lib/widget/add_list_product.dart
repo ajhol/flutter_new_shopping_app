@@ -12,6 +12,38 @@ class _AddListProductState extends State<AddListProduct> {
 
   //Method
 
+  Widget cameraButton() {
+    return IconButton(
+      icon: Icon(
+        Icons.add_a_photo,
+        size: 36,
+        color: Colors.purple,
+      ),
+      onPressed: () {},
+    );
+  }
+
+  Widget galleryButton() {
+    return IconButton(
+      icon: Icon(
+        Icons.add_photo_alternate,
+        size: 36,
+        color: Colors.red,
+      ),
+      onPressed: () {},
+    );
+  }
+
+  Widget showButton() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        cameraButton(),
+        galleryButton(),
+      ],
+    );
+  }
+
   Widget showImage() {
     return Container(
       padding: EdgeInsets.all(20),
@@ -26,6 +58,7 @@ class _AddListProductState extends State<AddListProduct> {
     return Column(
       children: [
         showImage(),
+        showButton(),
       ],
     );
   }
